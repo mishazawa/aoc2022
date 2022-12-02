@@ -1,4 +1,31 @@
-const data = `13399
+const data = getData();
+
+function sum(arr) {
+  return arr.reduce((s, i) => s+i, 0)
+}
+
+const elves = data.split(/\n\n/g);
+
+const kal = elves.reduce((acc, val) => {
+  const s = sum(val.split('\n').map(num => parseInt(num)));
+  acc.push(s);
+  return acc;
+}, [])
+
+const k = kal.sort((a, b) => b - a);
+
+const max = k[0];
+
+console.log(max)
+
+const s = sum(k.slice(0, 3))
+
+console.log(s)
+
+// for readability purpose
+
+function getData() {
+  return `13399
 13677
 11945
 9861
@@ -2251,25 +2278,4 @@ const data = `13399
 2533
 5321
 1877`;
-
-function sum(arr) {
-  return arr.reduce((s, i) => s+i, 0)
 }
-
-const elves = data.split(/\n\n/g);
-
-const kal = elves.reduce((acc, val) => {
-  const s = sum(val.split('\n').map(num => parseInt(num)));
-  acc.push(s);
-  return acc;
-}, [])
-
-const k = kal.sort((a, b) => b - a);
-
-const max = k[0];
-
-console.log(max)
-
-const s = sum(k.slice(0, 3))
-
-console.log(s)
